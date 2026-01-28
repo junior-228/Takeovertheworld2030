@@ -2,6 +2,52 @@
 
 ---
 
+## Session Summary - January 28, 2026 (Session 5)
+
+### What We Worked On
+LinkedIn content strategy - crafting a follow-up post based on a comment you left on Sarah Barnes-Humphrey's post about digital transformation and AI implementation.
+
+### Decisions Made
+- **Post angle:** "Use AI internally first before selling it to customers"
+- **Framing:** Position as a lesson learned from building something no one asked for
+- **Tone:** Authentic, reflective, building on your original comment
+- **Structure:** Reference the comment, share the deeper insight, explain the "why"
+
+### Current State
+Draft post created and ready for review:
+
+> *I left a comment on Sarah Barnes-Humphrey's post yesterday about building internally first. It got me thinking deeper.*
+>
+> *Everyone's rushing to use AI to write emails, summarize documents, impress customers. But that's adding tools to the toolbox without knowing what you're building.*
+>
+> *I learned this the hard way - building something no one asked for.*
+>
+> *Now I'm taking a different approach: AI to structure our internals first. Get our own house in order before passing it to customers.*
+>
+> *Why?*
+> - *We become our own use case*
+> - *We can actually test what works before selling it*
+> - *When it connects to customer tools, it's already battle-tested*
+>
+> *It's not about adding another tool. It's about optimizing what we already have.*
+>
+> *Then the external stuff follows naturally.*
+
+### Open Loops
+- [ ] Final review and approval of the LinkedIn post draft
+- [ ] Decision: Share Sarah's original post or create standalone post?
+- [ ] Timing for when to publish
+
+### Files Changed/Created
+- `README.md` - Added Session 5 summary
+
+### Key Learnings
+- **Core philosophy:** Be your own first customer before selling to others
+- **The lesson:** Building something no one asked for taught you to validate internally first
+- **The shift:** AI isn't about adding tools - it's about optimizing existing operations
+
+---
+
 ## Session Summary - January 28, 2026 (Session 4)
 
 ### What We Worked On

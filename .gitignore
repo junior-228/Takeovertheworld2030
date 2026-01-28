@@ -1,0 +1,13 @@
+# Claude temp files
+tmpclaude-*
+
+# Temp directories
+temp_*/
+
+# Secrets and API keys - NEVER commit these
+.env
+*.env
+ps-email-agent/.env
+
+# PowerShell scripts with API keys
+hubspot_*.ps1

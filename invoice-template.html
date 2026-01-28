@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice {{invoice_number}}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --gray-800: #222222;
+            --gray-600: #555555;
+            --gray-400: #999999;
+            --gray-200: #dddddd;
+            --gray-100: #f0f0f0;
+            --white: #ffffff;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11px;
+            line-height: 1.4;
+            color: var(--black);
+            background: var(--white);
+        }
+
+        .page {
+            width: 7.5in;
+            min-height: 10in;
+            padding: 0;
+            margin: 0 auto;
+            background: var(--white);
+            position: relative;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--black);
+            margin-bottom: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-mark {
+            width: 70px;
+            height: 70px;
+        }
+
+        .logo-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-pallet {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .logo-solutions {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 7px;
+            margin-top: 2px;
+            color: var(--gray-600);
+        }
+
+        .invoice-section {
+            text-align: right;
+        }
+
+        .invoice-label {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--gray-600);
+        }
+
+        .invoice-number {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .invoice-date {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+
+        /* ===== INFO GRID ===== */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .info-box {
+            border: 2px solid var(--black);
+            position: relative;
+        }
+
+        .info-box-label {
+            position: absolute;
+            top: -9px;
+            left: 12px;
+            background: var(--white);
+            padding: 0 8px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--black);
+        }
+
+        .info-box-content {
+            padding: 16px;
+        }
+
+        .info-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 6px;
+        }
+
+        .info-address {
+            font-size: 12px;
+            color: var(--gray-800);
+            line-height: 1.5;
+        }
+
+        .info-detail {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .info-detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-size: 11px;
+        }
+
+        .info-detail-label {
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+
+        .info-detail-value {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .info-detail-value.due {
+            font-size: 13px;
+        }
+
+        /* ===== DELIVERY SECTIONS ===== */
+        .delivery-section {
+            margin-bottom: 20px;
+        }
+
+        .delivery-header {
+            background: var(--gray-100);
+            border: 2px solid var(--black);
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delivery-info {
+            display: flex;
+            gap: 24px;
+            font-size: 11px;
+        }
+
+        .delivery-info-item {
+            display: flex;
+            gap: 6px;
+        }
+
+        .delivery-info-label {
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+
+        .delivery-info-value {
+            font-weight: 700;
+        }
+
+        .delivery-type {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .delivery-type.credit {
+            background: var(--white);
+            color: var(--black);
+            border: 2px solid var(--black);
+        }
+
+        /* ===== LINE ITEMS TABLE ===== */
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid var(--black);
+            border-top: none;
+        }
+
+        .items-table th {
+            background: var(--white);
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--gray-600);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .items-table th.qty-col,
+        .items-table td.qty-col {
+            text-align: center;
+            width: 80px;
+        }
+
+        .items-table th.price-col,
+        .items-table td.price-col {
+            text-align: right;
+            width: 100px;
+        }
+
+        .items-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: middle;
+            font-size: 11px;
+        }
+
+        .items-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .item-detail {
+            font-size: 10px;
+            color: var(--gray-600);
+            margin-top: 2px;
+        }
+
+        .credit-amount {
+            color: var(--gray-600);
+        }
+
+        /* ===== TOTALS ===== */
+        .totals-section {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .totals-box {
+            width: 280px;
+            border: 2px solid var(--black);
+        }
+
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            font-size: 12px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .totals-row:last-child {
+            border-bottom: none;
+        }
+
+        .totals-row.subtotal {
+            background: var(--gray-100);
+        }
+
+        .totals-row.credits {
+            color: var(--gray-600);
+        }
+
+        .totals-row.total {
+            background: var(--black);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .totals-label {
+            font-weight: 600;
+        }
+
+        .totals-value {
+            font-weight: 700;
+        }
+
+        /* ===== PAYMENT INFO ===== */
+        .payment-section {
+            margin-top: 30px;
+            border: 2px solid var(--black);
+        }
+
+        .payment-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 10px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .payment-content {
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .payment-method {
+            font-size: 11px;
+        }
+
+        .payment-method-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .payment-method-detail {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 30px;
+            padding-top: 12px;
+            border-top: 2px solid var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-contact {
+            font-size: 10px;
+            color: var(--gray-600);
+        }
+
+        .footer-contact strong {
+            color: var(--black);
+        }
+
+        .footer-legal {
+            font-size: 9px;
+            color: var(--gray-400);
+            text-align: right;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .page {
+                width: 100%;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-mark">
+                    <img src="PalletSolutions-Final_Instagram.jpg" alt="Pallet Solutions">
+                </div>
+                <div class="logo-text">
+                    <div class="logo-pallet">PALLET</div>
+                    <div class="logo-solutions">SOLUTIONS</div>
+                </div>
+            </div>
+            <div class="invoice-section">
+                <div class="invoice-label">INVOICE</div>
+                <div class="invoice-number">{{invoice_number}}</div>
+                <div class="invoice-date">{{invoice_date}}</div>
+            </div>
+        </div>
+
+        <!-- INFO GRID -->
+        <div class="info-grid">
+            <div class="info-box">
+                <div class="info-box-label">BILL TO</div>
+                <div class="info-box-content">
+                    <div class="info-name">{{customer_name}}</div>
+                    <div class="info-address">
+                        {{billing_address}}<br>
+                        {{billing_city}}, {{billing_state}} {{billing_zip}}
+                    </div>
+                    <div class="info-detail">
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">AP CONTACT</span>
+                            <span class="info-detail-value">{{ap_contact}}</span>
+                        </div>
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">AP EMAIL</span>
+                            <span class="info-detail-value">{{ap_email}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-label">INVOICE DETAILS</div>
+                <div class="info-box-content">
+                    <div class="info-detail" style="margin-top: 0; padding-top: 0; border-top: none;">
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">INVOICE DATE</span>
+                            <span class="info-detail-value">{{invoice_date}}</span>
+                        </div>
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">TERMS</span>
+                            <span class="info-detail-value">Net 30</span>
+                        </div>
+                        <div class="info-detail-row">
+                            <span class="info-detail-label">DUE DATE</span>
+                            <span class="info-detail-value due">{{due_date}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DELIVERIES -->
+        {{#each deliveries}}
+        <div class="delivery-section">
+            <div class="delivery-header">
+                <div class="delivery-info">
+                    <div class="delivery-info-item">
+                        <span class="delivery-info-label">BOL</span>
+                        <span class="delivery-info-value">{{bol_number}}</span>
+                    </div>
+                    <div class="delivery-info-item">
+                        <span class="delivery-info-label">DATE</span>
+                        <span class="delivery-info-value">{{delivery_date}}</span>
+                    </div>
+                    <div class="delivery-info-item">
+                        <span class="delivery-info-label">PO</span>
+                        <span class="delivery-info-value">{{customer_po}}</span>
+                    </div>
+                </div>
+                {{#if is_pickup}}<span class="delivery-type credit">PICKUP</span>{{else}}<span class="delivery-type">DELIVERY</span>{{/if}}
+            </div>
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>DESCRIPTION</th>
+                        <th class="qty-col">QTY</th>
+                        <th class="price-col">UNIT PRICE</th>
+                        <th class="price-col">AMOUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each line_items}}
+                    <tr>
+                        <td>
+                            <div class="item-name">{{description}}</div>
+                            {{#if detail}}<div class="item-detail">{{detail}}</div>{{/if}}
+                        </td>
+                        <td class="qty-col">{{qty}}</td>
+                        <td class="price-col">{{unit_price}}</td>
+                        <td class="price-col {{#if is_credit}}credit-amount{{/if}}">{{line_total}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{/each}}
+
+        <!-- TOTALS -->
+        <div class="totals-section">
+            <div class="totals-box">
+                <div class="totals-row subtotal">
+                    <span class="totals-label">Subtotal (Deliveries)</span>
+                    <span class="totals-value">{{subtotal_deliveries}}</span>
+                </div>
+                <div class="totals-row credits">
+                    <span class="totals-label">Credits (Pickups)</span>
+                    <span class="totals-value">({{total_credits}})</span>
+                </div>
+                <div class="totals-row">
+                    <span class="totals-label">Tax</span>
+                    <span class="totals-value">{{tax_amount}}</span>
+                </div>
+                <div class="totals-row total">
+                    <span class="totals-label">TOTAL DUE</span>
+                    <span class="totals-value">{{total_due}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAYMENT INFO -->
+        <div class="payment-section">
+            <div class="payment-header">PAYMENT INFORMATION</div>
+            <div class="payment-content">
+                <div class="payment-method">
+                    <div class="payment-method-title">Mail Check To:</div>
+                    <div class="payment-method-detail">
+                        Pallet Solutions<br>
+                        {{company_address}}<br>
+                        {{company_city}}, {{company_state}} {{company_zip}}
+                    </div>
+                </div>
+                <div class="payment-method">
+                    <div class="payment-method-title">ACH / Wire Transfer:</div>
+                    <div class="payment-method-detail">
+                        Bank: {{bank_name}}<br>
+                        Routing: {{routing_number}}<br>
+                        Account: {{account_number}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-contact">
+                <strong>Pallet Solutions</strong> &nbsp;|&nbsp;
+                (555) 123-4567 &nbsp;|&nbsp;
+                accounting@palletsolutionsusa.com
+            </div>
+            <div class="footer-legal">
+                Thank you for your business.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

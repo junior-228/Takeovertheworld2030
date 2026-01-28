@@ -1,6 +1,53 @@
 # Pallet Solutions Automation Skills
 
-## Session Summary - January 28, 2026
+---
+
+## Session Summary - January 28, 2026 (Session 2)
+
+### What We Worked On
+Built a complete sales outreach system for Pallet Solutions USA:
+1. **sales-time skill** - Unified outreach workflow (prospect pulling, signal research, CRM updates, LinkedIn automation, email generation)
+2. **X article** - "The Pallet Industry Has an Integrity Problem" - flagship content piece for Track 2 outreach
+
+### Decisions Made
+- **Two-track outreach strategy:** Track 1 (Direct) for signal-found prospects, close in 60 days. Track 2 (Content Funnel) for no-signal prospects, warm up over 6-12 months.
+- **Contact-first workflow:** Start with engaged contacts (clicked > opened > no engagement), then find their companies. Guarantees every output has a contact to email.
+- **Language principles:** Reagan question technique ("Are you better off..."), future pacing, pain stacking, prize frame. No pitching. You are the prize.
+- **LinkedIn strategy:** Connect with no message (face before name), then email 24-48 hours later when they recognize you.
+- **Work in Terminal (T), not Claude.ai (C):** Terminal has HubSpot MCP, web search, Claude Chrome, and file persistence. Claude.ai is now redundant.
+- **Signal-based tiering replaces initiative-based:** Companies with buying signals outrank companies with just size/initiatives.
+
+### Current State
+- **sales-time skill:** Complete and ready to use. Trigger with "sales time" or "let's do outreach"
+- **X article:** Sections 1-2 finalized, Section 3 drafted (needs review of Local Yards and National Providers subsections), Sections 4-6 not started
+- **HubSpot:** 8 new properties needed (6 company, 2 contact) - user needs to create these
+
+### Open Loops
+- [ ] Review Section 3 subsections (Local Yards, National Providers) in the article
+- [ ] Write Sections 4-6 of the article (what happens when things break, what I'd want if buying, the third option)
+- [ ] Create 8 HubSpot properties for sales-time skill to function:
+  - **Company:** signal_type, signal_details, signal_source_url, signal_date_found, outreach_track, last_signal_check
+  - **Contact:** linkedin_connected, linkedin_connect_date
+- [ ] Pallet Enterprise column invitation - haven't started
+
+### Files Changed/Created
+- `skills/sales-time/SKILL.md` - Complete sales outreach skill (new)
+- `x-article-integrity-problem-DRAFT.md` - X article draft (new)
+- `README.md` - Updated with session 2 summary
+
+### Key Learnings
+- **HubSpot manage_crm_objects format:** objectId must be a number (not string), objects array needs objectType inside each object
+- **Engagement data lives at Contact level:** hs_sales_email_last_clicked and hs_sales_email_last_opened are contact properties, not company
+- **Email voice principles:**
+  - "Or it doesn't." > "Let me know if you want to chat"
+  - "What if it wasn't your problem?" > "Who handles this?"
+  - Just "— Rob" at the end, no CTA
+  - Never: "just following up", "circling back", "quick call", "15 minutes", emojis
+- **Track 2 emails point to content:** "It's pinned to my LinkedIn if you're curious" - no pitch, just point to value
+
+---
+
+## Session Summary - January 28, 2026 (Session 1)
 
 ### What We Worked On
 Overhauled the `prospect-recon.skill` to improve cold email personalization by surfacing company incentives/targets and generating contextual hooks that show research without sounding like a pitch.
@@ -55,4 +102,28 @@ Subject: [Specific number or location from their world]
 > [Bridge - "I built a pallet network that..." variation]
 >
 > 15 minutes. You'll know if we can help you [their specific goal].
+```
+
+---
+
+## Skills Reference
+
+| Skill | Trigger | Purpose |
+|-------|---------|---------|
+| sales-time | "sales time", "let's do outreach" | Full outreach workflow - pull prospect, research signals, update HubSpot, LinkedIn actions, generate email |
+| prospect-tiering | "tier prospects", "continue tiering" | Research and tier HubSpot companies by initiative/timing |
+| prospect-recon | "recon [contact]" | Deep research on specific contact for personalized outreach |
+
+## Project Structure
+```
+Take over the world 2030/
+├── skills/
+│   └── sales-time/
+│       └── SKILL.md
+├── temp_tiering/
+│   └── prospect-tiering/
+│       └── SKILL.md
+├── x-article-integrity-problem-DRAFT.md
+├── prospect-recon.skill
+└── README.md
 ```

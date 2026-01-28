@@ -2,6 +2,51 @@
 
 This repository contains automation tools and documentation for Pallet Solutions USA's operational transformation.
 
+---
+
+## Session Summary - January 28, 2026 (Session 8)
+
+### What We Worked On
+Airtable schema updates for operations automation - preparing the database to support automated order processing, vendor confirmation, BOL generation, and customer notifications for direct delivery customers (starting with Maytex).
+
+### Decisions Made
+- **Focus on Direct Deliveries first** - Automate Maytex direct deliveries before tackling brokered accounts (like RDUS/Home Depot)
+- **Account Type classification** - Added "Direct" vs "Brokered" to differentiate fulfillment requirements (Direct = must fulfill, Brokered = optional)
+- **Enrollment-based trigger logic** - Only customers existing in Airtable should trigger automation (Airtable presence = program approval)
+- **Vendor confirmation via form links** - Use Tally forms instead of email parsing for reliability
+- **Airtable as central ERP** - All order management data lives in Airtable, with Make.com handling automation
+- **Fairfield Pallet as primary vendor** - Assigned to service Maytex locations (Lancaster PA, New Castle DE)
+
+### Current State
+**Airtable schema updated** with all required fields for automation:
+- Customer: Account Type field added (Maytex = Direct)
+- Locations: Service Type, Assigned Vendor, Backup Vendor fields added
+- Orders: Pickup/Delivery Location, BOL PDF, Vendor Confirmation URL, Customer Notified fields added
+- Deliveries: All required fields already existed (Driver Name, Phone, Signed POD, etc.)
+
+**Ready to build Make.com scenarios** once manual data entry is complete.
+
+### Open Loops
+- [ ] Fill in Fairfield Pallet vendor details (name, address, email, contact, phone)
+- [ ] Link Lancaster PA → Assigned Vendor = Fairfield Pallet
+- [ ] Link New Castle DE → Assigned Vendor = Fairfield Pallet
+- [ ] Set Service Type for each location (Delivery/Pickup/Both)
+- [ ] Build Make.com automation scenarios per workflow document
+- [ ] Set up Tally form for vendor confirmation
+- [ ] Configure BOL PDF generation (Documint or PDF.co)
+
+### Files Changed/Created
+- `Operations_Automation_Workflow.md` - Complete 5-phase automation workflow documentation
+- `Airtable_Schema_Updated.md` - Full Airtable schema with all fields documented
+- `README.md` - Updated with session 8 summary
+
+### Key Learnings
+- **Enterprise vs SMB approach**: Enterprise companies use unified platforms; SMBs stitch tools together. Our approach (Airtable + Make.com + Claude) is appropriate for current scale
+- **Automation difficulty: 3/10** - Most components are standard integrations, main complexity is in the AI email parsing
+- **Trigger design matters**: Processing every email wastes credits; enrollment-based filtering is more efficient
+- **Direct vs Brokered logic**: Different account types need different handling - direct accounts have contractual obligations, brokered accounts are opportunistic
+
+---
 
 ## Session Summary - January 28, 2026 (Session 7)
 

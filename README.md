@@ -2,6 +2,80 @@
 
 ---
 
+## Session Summary - January 28, 2026 (Session 4)
+
+### What We Worked On
+HubSpot CRM contact email updates - bulk updating contact email addresses to match company domain naming conventions.
+
+### Decisions Made
+- Email format convention: `firstname.lastname@companydomain.com`
+- For names with special characters (e.g., "Reneé"), use normalized ASCII (e.g., "renee")
+- For names with suffixes like "MBA", exclude the suffix from the email
+- For compound last names (e.g., "De Giovanni"), remove spaces (e.g., "degiovanni")
+- All emails converted to lowercase
+
+### Current State
+Successfully updated email addresses for contacts at two companies:
+
+**Phillips Pet Food & Supplies (phillipspet.com)**
+- 11 contacts updated with `firstname.lastname@phillipspet.com` format
+- Reference contact: Zach Monroe (zach.monroe@phillipspet.com)
+
+**Anixter (anixter.com)**
+- 10 contacts updated with `firstname.lastname@anixter.com` format
+- Reference contact: Dave Allen (dave.allen@anixter.com)
+
+**Total: 21 contacts updated**
+
+### Open Loops
+- None - all requested email updates completed successfully
+
+### Files Changed/Created
+- HubSpot CRM records updated (21 contact email fields)
+- `README.md` - Added Session 4 summary
+
+### Key Learnings
+- HubSpot MCP tool requires `objectId` (not `id`) in update requests
+- Maximum of 10 objects per batch update request
+- Company domain can be found in company record properties
+- Contact associations can be searched using `associatedcompanyid` filter
+
+---
+
+## Session Summary - January 28, 2026 (Session 3)
+
+### What We Worked On
+Morning brief review of HubSpot CRM data - checking pipeline, tasks, and tickets for the day.
+
+### Decisions Made
+- Identified need for bulk task cleanup (2,439 overdue tasks clogging the system)
+
+### Current State
+**Pipeline:**
+- 1 active deal: **Maytex Mills** - Stage: Partial Sites Awarded (close date was Nov 6, 2025 - needs attention)
+
+**Tasks:**
+- 2,439 open tasks assigned to Robert Gregg
+- Majority are overdue "LD Connect" tasks from September 2025
+- Also includes "Call contact to follow up" tasks
+
+**Tickets:**
+- No open tickets assigned
+
+### Open Loops
+- [ ] Bulk cleanup/close of overdue "LD Connect" tasks (2,400+)
+- [ ] Review Maytex Mills deal - close date passed, is it still active?
+- [ ] Review "Call contact to follow up" tasks for relevance
+
+### Files Changed/Created
+- `README.md` - Added Session 3 summary
+
+### Key Learnings
+- Task backlog is significant - may be affecting CRM usability and reporting
+- Pipeline is lean (1 deal) - sales-time skill should help drive new opportunities
+
+---
+
 ## Session Summary - January 28, 2026 (Session 2)
 
 ### What We Worked On

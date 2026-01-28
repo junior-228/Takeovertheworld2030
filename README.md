@@ -1,4 +1,51 @@
-# Pallet Solutions Automation Skills
+# Pallet Solutions Automation Hub
+
+This repository contains automation tools and documentation for Pallet Solutions USA's operational transformation.
+
+---
+
+## Major Projects
+
+### 1. The Pallet Hub (Order-to-Cash Automation)
+**Status:** Phase 2 In Progress
+**Documentation:** [`PALLET_SOLUTIONS_AUTOMATION_PROJECT.md`](PALLET_SOLUTIONS_AUTOMATION_PROJECT.md)
+
+AI-powered Order-to-Cash system that automates the entire pallet order lifecycle - from customer email to payment.
+
+**Tech Stack:**
+| Layer | Tool | Purpose |
+|-------|------|---------|
+| Database | Airtable | 12 interconnected tables |
+| Automation | Make.com | Workflow orchestration |
+| AI Brain | Claude API | Email parsing, POD photo reading |
+| Documents | HTML→PDF | BOL and Invoice generation |
+
+**Completed:**
+- ✅ 12 Airtable tables built and linked
+- ✅ 25 Line Item Types pre-populated
+- ✅ BOL template (HTML, branded, pickup/delivery logic)
+- ✅ Invoice template (HTML, itemized, Net 30)
+- ✅ Make.com scenario specifications documented
+- ✅ Claude email parsing prompt designed
+
+**Next Steps:**
+- [ ] Update Airtable status fields
+- [ ] Connect Outlook to Make.com
+- [ ] Get Claude API key
+- [ ] Build Make.com Scenario 1 (Inbound Order Processing)
+- [ ] Build Make.com Scenario 2 (Vendor Confirmation Handler)
+
+### 2. Sales Outreach Automation
+**Status:** Active
+**Primary Skill:** `sales-time`
+
+Two-track outreach system for prospecting and lead nurturing.
+- **Track 1 (Direct):** Signal-found prospects, close in 60 days
+- **Track 2 (Content Funnel):** No-signal prospects, warm up over 6-12 months
+
+### 3. LinkedIn Content Strategy
+**Status:** Active
+**Key Content:** "The Pallet Industry Has an Integrity Problem" (flagship article)
 
 ---
 
@@ -380,7 +427,14 @@ Take over the world 2030/
 ├── temp_tiering/
 │   └── prospect-tiering/
 │       └── SKILL.md
+├── session-summaries/
+│   └── 2026-01-28-session-2.md
+├── PALLET_SOLUTIONS_AUTOMATION_PROJECT.md  # The Pallet Hub documentation
+├── bol-template.html                        # BOL document template
+├── invoice-template.html                    # Invoice document template
+├── article-the-pallet-industry-has-an-integrity-problem.md
 ├── x-article-integrity-problem-DRAFT.md
 ├── prospect-recon.skill
+├── hubspot_*.ps1                           # HubSpot API scripts
 └── README.md
 ```

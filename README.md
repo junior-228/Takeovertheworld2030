@@ -2,6 +2,50 @@
 
 ---
 
+## Session Summary - January 28, 2026 (Session 6)
+
+### What We Worked On
+Major revision of "The Pallet Industry Has an Integrity Problem" - the flagship LinkedIn article for Track 2 content marketing. Full rewrite with proper story arc from commodity mindset to program/structure mindset.
+
+### Decisions Made
+- **Article arc**: Commodity mindset → show the gap → flip to structure/program mindset
+- **Save the word "program"**: Don't use it until it has earned meaning through the buildup
+- **Reagan Rule**: Make readers answer questions for themselves instead of telling them
+- **No pitch**: Never mention Pallet Solutions USA by name - let readers connect the dots
+- **Department walkthrough**: Show "who owns pallets" by walking through Procurement, Operations, Facilities before landing on "Probably no one"
+- **Fire drill as domino cascade**: Rejected load → Inaccurate ETA → Production can't load → Line backs up → Team standing around → etc.
+- **RFP section expanded**: Explain race to the bottom, then show the pain (surprise rate increases, quality drops, missed deliveries) - "You're locked in, so you deal with it"
+- **Final structure decision**: Move job description up right after "So it doesn't get looked at until something breaks" - show what ownership looks like BEFORE showing the fire drill consequence
+- **Removed lumber section**: Was causing readers to "check out"
+
+### Current State
+Article is 90% complete. Final structure decided:
+1. "No one owns it" → Job description (what ownership looks like)
+2. "You don't have this person" → Fire drill (what happens without them)
+3. Commodity vs program payoff
+
+Need one final rewrite to implement this last structure change (moving job description before fire drill).
+
+### Open Loops
+- [ ] Rewrite article with job description moved up, fire drill as the consequence
+- [ ] Final review of full article flow
+- [ ] Post to LinkedIn and pin to profile
+
+### Files Changed/Created
+- `article-the-pallet-industry-has-an-integrity-problem.md` - Main article draft (major revision)
+- `README.md` - Added Session 6 summary
+
+### Key Learnings
+- **Story arc matters**: Commodity → gap → structure. Build the thread throughout.
+- **Earn your words**: Don't use "program" until the reader understands why it matters.
+- **Show don't tell**: Job description IS the reveal of what ownership looks like.
+- **Consequence follows standard**: Show what it should look like, then show what happens when it doesn't exist.
+- **Avoid AI patterns**: "Not because X. Not because Y." sounds robotic - write like you talk.
+- **Don't challenge with specifics**: Avoid numbers that can be argued ("87% of companies..."). State truths that resonate.
+- **Locked-in pricing pain**: Readers might think "locked in = good" - follow it with reality: surprise rate increases, quality drops, missed deliveries
+
+---
+
 ## Session Summary - January 28, 2026 (Session 5)
 
 ### What We Worked On

@@ -2,6 +2,61 @@
 
 This repository contains automation tools and documentation for Pallet Solutions USA's operational transformation.
 
+
+## Session Summary - January 28, 2026 (Session 7)
+
+### What We Worked On
+Executed the **sales-time skill** - batch cold email workflow for Pallet Solutions USA. Pulled tiered prospects from HubSpot, researched company initiatives via web search, and began drafting cold emails.
+
+### Decisions Made
+- Started with Tier A prospects (fully researched companies) - discovered most lack contact emails in HubSpot
+- Pivoted to include Tier B prospects to find contacts with emails
+- Tier C companies marked "too small" per outreach_angle - skipped entirely
+- Identified 4 viable prospects across Tier A and B with emails and no "follow_up" status
+
+### Current State
+**Prospects Ready for Outreach:**
+
+| # | Company | Tier | Contact | Title | Email | Initiative |
+|---|---------|------|---------|-------|-------|------------|
+| 1 | Ocean State Job Lot | B | Erik Price | - | e.price@osjl.com | 22 new stores in 2025, Net Zero Energy goal |
+| 2 | Ocean Beauty Seafoods | B | Jack Whitney | VP, Distribution | jack.whitney@oceanbeauty.com | ASC sustainability certification, $750M revenue |
+| 3 | Harrell's | B | Kevin English | VP, Finance | kenglish@harrells.com | POLYON controlled-release tech, environmental focus |
+| 4 | Dentsply Sirona | A | Brian Janko | VP, eCommerce | brian.janko@dentsplysirona.com | $200M cost savings restructuring |
+
+**First Email Drafted (Ocean State Job Lot):**
+
+Subject: 22 new stores + Net Zero
+
+You're opening 22 stores in 2025 while pushing toward Net Zero Energy. Are pallets part of that?
+
+Do you have someone with 10 years of pallet industry experience making sure you're getting the best rate as you scale across 11 states?
+
+That's what I do. Vet the vendors, get you the best pricing, manage the coordination. You get the expertise without the headcount - and I disappear until you need me.
+
+15 minutes and you'll know whether to hire for this - or hand it off.
+
+- 84 words, follows locked format
+- **Awaiting approval**
+
+### Open Loops
+- [ ] Email #1 (Ocean State Job Lot) pending approval
+- [ ] Emails #2-4 need to be drafted and approved
+- [ ] After approval: log emails to HubSpot, set hs_lead_status to "follow_up"
+- [ ] **Data Quality Issue:** Most Tier A companies have contacts but NO email addresses - need email enrichment
+
+### Files Changed/Created
+- README.md - Added Session 7 summary
+
+### Key Learnings
+- **HubSpot Data Gap:** Tier A companies were researched (outreach_angle populated) but contact emails weren't added. Future prospect research should include email enrichment.
+- **Tier B has better contact data:** Ocean State Job Lot, Ocean Beauty Seafoods, and Harrell's all had contacts with emails in the system.
+- **Skip Criteria Applied:** Contacts with hs_lead_status = "follow_up" excluded (already emailed). Brian Janko at Dentsply Sirona has status "Pallet yard" - eligible.
+- **Public Initiative Sources:**
+  - Ocean State Job Lot: 22 new stores, Net Zero Energy goal, $1M+ saved in drayage/detention
+  - Dentsply Sirona: $200M restructuring savings, Return-to-Growth action plan
+
+---
 ---
 
 ## Major Projects

@@ -2,6 +2,99 @@
 
 ---
 
+## Session Summary - January 28, 2026 (Session 7)
+
+### What We Worked On
+Batch processing A-tier companies in HubSpot to infer missing contact emails using pattern detection. Built PowerShell scripts to interact with HubSpot API and systematically filled in email addresses for contacts where we could detect the company's email naming convention.
+
+### Decisions Made
+- Use email pattern inference based on existing contacts at each company (detect dominant pattern, apply to contacts missing emails)
+- Skip contacts with problematic names: credentials (PhD, CPA, MBA), compound/hyphenated names, special characters, incomplete last names
+- Process companies in batches via HubSpot API using PowerShell scripts
+- When mixed patterns exist, use the most common pattern for that company
+
+### Current State
+Successfully processed **240+ contact emails** across 25+ A-tier companies:
+
+| Company | Emails Updated | Pattern |
+|---------|---------------|---------|
+| Ball Aerospace | 8 | firstname.lastname@ball.com |
+| SpartanNash | 10 | firstname.lastname@spartannash.com |
+| American Tire Distributors | 14 | firstinitiallastname@atd.com |
+| Carded Graphics Packaging | 6 | firstname.lastname@graphicpkg.com |
+| RH | 4 | firstinitiallastname@rh.com |
+| DHL | 5 | firstname.lastname@dhl.com |
+| Procter & Gamble | 8 | lastname.firstinitial@pg.com |
+| Sonoco | 2 | firstname.lastname@sonoco.com |
+| US Foods | 2 | firstname.lastname@usfoods.com |
+| Ventura Foods | 10 | firstinitiallastname@breakthrubev.com |
+| Martin Brower | 9 | firstinitiallastname@martin-brower.com |
+| STIHL | 3 | firstname.lastname@stihl.us |
+| Sappi | 10 | firstname.lastname@sappi.com |
+| Honeywell | 10 | firstname.lastname@honeywell.com |
+| Five Below | 10 | firstname.lastname@fivebelow.com |
+| GEODIS | 10 | firstname.lastname@geodis.com |
+| HEB | 8 | lastname.firstname@heb.com |
+| UPS | 9 | lastname.firstname@ups.com |
+| Chick-fil-A | 8 | firstname.lastname@chick-fil-a.com |
+| Ulta Beauty | 7 | firstinitiallastname@ulta.com |
+| O'Reilly Auto Parts | 11 | firstnamelastinitial@corporate.oreillyauto.com |
+| Halliburton | 8 | firstname.lastname@halliburton.com |
+| Sysco | 7 | firstname.lastname@sysco.com |
+| Coca-Cola | 7 | firstinitiallastname@coca-cola.com |
+| Target | 9 | firstname.lastname@target.com |
+| FedEx | 7 | firstname.lastname@fedex.com |
+| Lowe's | 6 | firstname.lastname@lowes.com |
+| Costco | 7 | firstinitiallastname@costco.com |
+| PepsiCo | 7 | firstname.lastname@pepsico.com |
+| Kroger | 9 | firstname.lastname@kroger.com |
+| CVS Health | 6 | firstname.lastname@cvshealth.com |
+| Walgreens | 10 | firstname.lastname@walgreens.com |
+| Johnson & Johnson | 8 | firstname_lastname@jnj.com |
+| 3M | 7 | firstname.lastname@3m.com |
+
+### Open Loops
+- More A-tier companies remain with missing contact emails (originally ~170 contacts identified)
+- Contacts with problematic name formats were skipped and may need manual review
+- Some companies have mixed email patterns - may want to verify inferred emails before campaigns
+- Consider adding email verification step (e.g., NeverBounce, Hunter.io) before sending
+
+### Files Changed/Created
+- `hubspot_api.ps1` - Core API script for contact operations
+- `hubspot_batch_update.ps1` - Batch update contacts with inferred emails
+- `hubspot_search_company.ps1` - Search companies by name
+- `hubspot_company.ps1` - Get company details
+- `hubspot_find_missing.ps1` - Find all contacts without email
+- `hubspot_atier_missing.ps1` - Find A-tier companies with missing emails
+- `hubspot_search_companies.ps1` - Search companies by tier
+- `README.md` - Added Session 7 summary
+
+### Key Learnings
+- **HubSpot Associations API v4** is required for company-contact relationships (`/crm/v4/objects/companies/{id}/associations/contacts`)
+- **Email patterns vary significantly** - common patterns include:
+  - `firstname.lastname@domain.com` (most common)
+  - `firstinitiallastname@domain.com`
+  - `lastname.firstname@domain.com`
+  - `firstname_lastname@domain.com`
+  - `firstnamelastinitial@domain.com`
+- **Batch updates fail on duplicates** - if any email already exists in HubSpot, the whole batch fails. Handle individually if needed.
+- **Name quality matters** - contacts with credentials (PhD, CPA), compound names, or special characters need manual cleanup
+- **Some companies use subdomain emails** - O'Reilly uses both `oreillyauto.com` and `corporate.oreillyauto.com`
+
+### HubSpot API Patterns Used
+```powershell
+# Search contacts by company association
+/crm/v4/objects/companies/{id}/associations/contacts
+
+# Batch update contacts
+/crm/v3/objects/contacts/batch/update
+
+# Search companies by property
+/crm/v3/objects/companies/search
+```
+
+---
+
 ## Session Summary - January 28, 2026 (Session 6)
 
 ### What We Worked On
